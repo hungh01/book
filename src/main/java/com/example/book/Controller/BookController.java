@@ -37,16 +37,16 @@ public class BookController {
     }
 
     @PostMapping("/add")
-    public String addBook(/*@Valid*/ @ModelAttribute("book") Book book/*, BindingResult bindingResult, Model model*/){
-//        if(bindingResult.hasErrors()){
-//            model.addAttribute("categories",categoryService.getAllCategory());
-//            model.addAttribute("book",new Book());
-//            return "book/add";
-//        }
-//        else {
+    public String addBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("categories",categoryService.getAllCategory());
+            model.addAttribute("book",book);
+            return "book/add";
+        }
+        else {
             bookService.addBook(book);
             return "redirect:/books";
-//        }
+        }
     }
 
     @GetMapping("/edit/{id}")
@@ -64,9 +64,16 @@ public class BookController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editBook(@PathVariable("id") Long id, @ModelAttribute("book") Book book) {
-        bookService.updateBook(book);
-        return "redirect:/books";
+    public String editBook(@PathVariable("id") Long id,@Valid @ModelAttribute("book") Book book, BindingResult bindingResult,Model model) {
+        if(bindingResult.hasErrors()){
+            model.addAttribute("categories",categoryService.getAllCategory());
+            model.addAttribute("book",book);
+            return "book/edit";
+        }
+        else {
+            bookService.updateBook(book);
+            return "redirect:/books";
+        }
     }
     @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") Long id){

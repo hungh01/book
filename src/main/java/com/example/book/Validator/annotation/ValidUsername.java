@@ -1,6 +1,6 @@
 package com.example.book.Validator.annotation;
 
-import com.example.book.Validator.ValidCategoryIdValidator;
+import com.example.book.Validator.ValidUsernameValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -15,10 +15,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({TYPE, FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = ValidCategoryIdValidator.class)
-@Documented
-public @interface ValidCategoryId {
-    String message() default "Invalid Category Id";
+@Constraint(validatedBy = ValidUsernameValidator.class)
+public @interface ValidUsername {
+    String message() default "Invalid already exists";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

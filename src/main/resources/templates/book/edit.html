@@ -15,7 +15,7 @@
                 <label class="form-label" for="title">Title: </label>
                 <br>
                 <input class="form-control" type="text" th:field ="*{title}" id="title">
-<!--                <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>-->
+                <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
             </div>
             <div class="col-6 mb-3">
                 <label class="form-label" for="author">Author: </label>
@@ -26,17 +26,17 @@
                 <label class="form-label" for="price">Price: </label>
                 <br>
                 <input class="form-control" type="text" th:field ="*{price}" id="price">
-<!--                <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>-->
+                <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
             </div>
             <div class="col-6 mb-3">
                 <label class="title" for="title">Category:</label>
                 <br>
-                <select class = "form-control" id = "category" name="category.id">
-                    <option value="${category.name}" selected></option>
+                <select class = "form-control" id="category" name="category.id">
+                    <option th:value="${book.category.id}" th:text="${book.category.name}"></option>
                     <option th:each="category : ${categories}" th:value = "${category.id}"
                             th:text="${category.name}"></option>
                 </select>
-<!--                <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>-->
+                <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
             </div>
             <input class="btn btn-success" type="submit" value="Save">
         </form>

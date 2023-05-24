@@ -1,6 +1,8 @@
 package com.example.book.Model;
 
+import com.example.book.Model.Entity.User;
 import com.example.book.Validator.annotation.ValidCategoryId;
+import com.example.book.Validator.annotation.ValidUserId;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -14,21 +16,25 @@ public class Book {
     private Long id;
 
     @Column(name = "title")
-    //@NotEmpty(message = "Title must not be empty")
-    //@Size(max = 50, min = 1, message = "Title must not be less than 50 characters")
+    @NotEmpty(message = "Title must not be empty")
+    @Size(max = 50, min = 1, message = "Title must not be less than 50 characters")
     private String title;
 
     @Column(name = "author")
     private String author;
 
     @Column(name = "price")
-    //@NotNull(message = "Price is required")
+    @NotNull(message = "Price is required")
     private Double price;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    //@ValidCategoryId
+    @ValidCategoryId
     private Category category;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ValidUserId
+    private User user;
 
     public Long getId() {
         return id;
@@ -51,6 +57,15 @@ public class Book {
     public Double getPrice() {
         return price;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public void setPrice(Double price) {
         this.price = price;
     }
