@@ -1,6 +1,7 @@
-package com.example.book.Model;
+package com.example.book.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotEmpty(message = "Name must not be empty")
     @Column(name = "name")
     private String name;
 

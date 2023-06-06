@@ -1,7 +1,7 @@
 package com.example.book.Controller;
 
 
-import com.example.book.Model.Book;
+import com.example.book.entity.Book;
 import com.example.book.services.BookService;
 import com.example.book.services.CategoryService;
 import jakarta.validation.Valid;

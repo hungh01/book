@@ -1,6 +1,6 @@
 package com.example.book.Validator;
 
-import com.example.book.Model.Category;
+import com.example.book.entity.Category;
 import com.example.book.Validator.annotation.ValidCategoryId;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

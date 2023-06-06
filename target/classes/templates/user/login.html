@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.Thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<section class="container">
+    <div class="row justify-content-center">
+        <div>
+            <div class="card">
+                <br>
+                <form th:action="@{/login}" method="post">
+                    <fieldset>
+                   <p>Đăng nhập vào hệ thống</p>
+                   <div th:if="${param.error}" class ="alert alert-danger">
+                       Invalid Username Or Password!
+                   </div>
+                   <div th:if="${param.logout}" class ="alert alert-success">
+                       You Have Been Logged Out!
+                   </div>
+                    <div class="mb-4">
+                        <label class="form-label">Tên Đăng Nhập: </label>
+                        <input type="text" required class="form-control" id="username" name="username"
+                               placeholder="User name" />
+                    </div>
+                    <br>
+                    <div class="mb-4">
+                        <label class="form-label">Mật Khẩu: </label>
+                        <input type="password" required class="form-control" id="password" name="password"
+                               placeholder="Password"/>
+                    </div>
+                    <br>
+                    <div class="mb-4">
+                        <input type="checkbox" name="remember-me" id="remember-me">
+                        <label for="remember-me">Remember Me</label>
+                    </div>
+                    <br>
+                    <div class="text-center pt-1 mb-5 pb-1">
+                        <button type="submit" class="button button-primary">Login</button>
+                        <a class="text-muted" href="/register">Don't have account. Sign up?</a>
+                    </div>
+                    <br>
+                    <div class="text-center pt-1 mb-5 pb-1">
+                        <a class="text-muted" href="/books">Home</a>
+                    </div>
+                    <br>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="layout :: footer"></th:block>
+</section>
+
+</body>
+</html>

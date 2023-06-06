@@ -1,6 +1,6 @@
 package com.example.book.services;
 
-import com.example.book.Model.Category;
+import com.example.book.entity.Category;
 import com.example.book.repository.ICategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.Thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <th:block th:replace="layout :: link-css"></th:block>
+</head>
+
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<section class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card">
+            <h3 class="card-title text-center"> Đăng Ký</h3>
+                <br>
+                    <form th:action="@{/register}" th:object="${user}" method="post">
+                        <div class="mb-4">
+                            <label class="title">User name: </label>
+                            <input type="text" class="form-control" th:field="*{username}" id="username"
+                                   placeholder="User name" />
+                            <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                        </div>
+                        <br>
+                        <div class="mb-4">
+                            <label class="form-label" >Password: </label>
+                            <input type="password"  class="form-control" th:field="*{password}" id="password"
+                                   placeholder="Password"/>
+                            <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" >Full name: </label>
+                            <input type="text" class="form-control" th:field="*{name}" id="name"
+                                   placeholder="Name">
+                            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" >Email: </label>
+                            <input type="email" class="form-control" th:field= "*{email}" id= "email"
+                                   placeholder="Email" />
+                            <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        </div>
+                        <br>
+                        <div class="text-center pt-1 mb-5 pb-1">
+                            <input type="submit" class="button button-primary" value="Đăng ký">
+                        </div>
+                        <br>
+                        <div class="text-center mb-5">
+                            <a class="text-muted" href="/books">Quay lại trang chủ</a>
+                        </div>
+                        <br>
+                    </form>
+
+                </div>
+            </div>
+    </div>
+</section>
+
+</body>
+</html>

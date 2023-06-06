@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.Thymeleaf.org">
+<html
+        xmlns:th="http://www.Thymeleaf.org"
+        xmlns:sec="http://www.Thymeleaf.org/thymeleaf-extras-springsecurity4"
+    lang="en">
 <head>
     <meta charset="UTF-8">
     <title>My app</title>
     <link th:fragment = "link-css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
 </head>
 <body>
     <header th:fragment="header">
@@ -16,7 +20,7 @@
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse align-self-right" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 m-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/books">Home</a>
@@ -33,6 +37,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/categories/add">Add Category</a>
                     </li>
+
+                    <li sec:authorize="isAuthenticated()">
+                        <form th:action="@{/logout}" method="post">
+                            <button class="btn btn-outline-danger" type="submit">Logout</button>
+                        </form>
+                    </li>
+                    <li sec:authorize="!isAuthenticated()">
+                        <a class="btn btn-outline-primary " href="/login">Login</a>
+                    </li>
+                    
                 </ul>
             </div>
             </div>

@@ -1,8 +1,7 @@
 package com.example.book.Controller;
 
 
-import com.example.book.Model.Book;
-import com.example.book.Model.Category;
+import com.example.book.entity.Category;
 import com.example.book.services.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +32,15 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public String addCategory(@ModelAttribute("category")Category category ){
+    public String addCategory(@ Valid @ModelAttribute("category")Category category,BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("category", new Category());
+            return "category/add";
+        }
+        else {
             categoryService.saveCategory(category);
             return "redirect:/categories";
-
+        }
     }
     @GetMapping("/edit/{id}")
     public String editCategoryForm(@PathVariable("id") Long id, Model model){
@@ -53,6 +57,7 @@ public class CategoryController {
 
     @PostMapping("/edit/{id}")
     public String editBook(@PathVariable("id") Long id,@ModelAttribute("category") Category category,Model model) {
+
             categoryService.saveCategory(category);
             return "redirect:/categories";
     }
